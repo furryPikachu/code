@@ -61,6 +61,55 @@ class Polygon
     }
   }
 
+  friend ostream &operator<<(ostream &os,
+			     const Polygon<dim> &p)
+  {
+    
+  }
+
+  /* print Polygon */
+  void ShowPolygon(void)
+  {
+    for(int j=0; j<polygon.size();j++)
+      {
+	cout<< "("  << polygon[j].coord[0];
+	for (int i = 1; i<dim; i++)
+	  {
+	    cout <<", " << polygon[j].coord[i] ;
+	  }
+	cout << ") ";
+      }
+    cout << endl;	
+  }
+
+  /* print as path */
+  void ShowPath(void)
+  {
+    for(int j=0; j<polygon.size()-1;j++)
+      {
+	cout<< "("  << polygon[j].coord[0];
+	for (int i = 1; i<dim; i++)
+	  {
+	    cout <<", " << polygon[j].coord[i] ;
+	  }
+	cout << ") ";
+      }
+    cout << endl;
+  }
+
+
+   void PrintPath(void)
+  {
+    cout << "The Path: " << endl ;
+    for (int j=0; j< polygon.size()-1; j++)
+      {
+      for (int i = 0; i< dim; i++)
+	cout << polygon[j].coord[i] << " ";
+      
+    cout << "| " ;
+  }
+    cout << endl;
+  }
   
 };
 

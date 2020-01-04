@@ -10,11 +10,11 @@ template <> inline
 bool Segment<2>::PointInSegment(const Point<2> &p, Real tol)
 {
   Real mindist=0;
-  bool signp1 = ((endpoint[0]-p).dot(endpoint[0]-endpoint[1]) > 0);
-  bool signp2 = ((endpoint[1]-p).dot(endpoint[1]-endpoint[0]) > 0);
+  bool signp1 = ((endpoint[0]-p).dot(endpoint[0]-endpoint[1]) > tol);
+  bool signp2 = ((endpoint[1]-p).dot(endpoint[1]-endpoint[0]) > tol);
    if(signp1 != signp2)
      {
-     if ((endpoint[0]-p).dot(endpoint[0]-endpoint[1]) <= 0)
+     if ((endpoint[0]-p).dot(endpoint[0]-endpoint[1]) <= tol)
        mindist = (endpoint[0]-p).norm();
      else
        mindist = (endpoint[1]-p).norm();

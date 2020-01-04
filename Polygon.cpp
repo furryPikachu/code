@@ -24,7 +24,7 @@ int Polygon<2>::PointPolygon(const Point<2> &q, Real tol) const
       else
 	{
 	  Ustrad = (copy.polygon[i].coord[1] > tol) != (copy.polygon[i+1].coord[1] > tol);
-	  area = copy.polygon[i].cross(copy.polygon[i+1] ) < 0;
+	  area = copy.polygon[i].cross(copy.polygon[i+1] ) < tol;
 	  if(Ustrad)
 	    {
 	      if((copy.polygon[i].coord[1]> tol) && (area))

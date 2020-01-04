@@ -96,6 +96,13 @@ class Point
     }
     assert(!"Unsupported norm type");
   }
+bool  IsEqual(const Point<dim> &that, Real tol=0.05 , int type = 2) const {
+    if( (*this-that).norm(type) - tol > 0)
+      return false;
+    else
+      return true;
+  }
+  
   
 };
 

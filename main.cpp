@@ -2,6 +2,7 @@
 #include "Polygon.h"
 #include "Point.h"
 #include "RealizableSpadjor.h"
+#include "SegmentedRealizableSpadjor.h"
 
 int main(int argc, char **argv)
 {
@@ -67,17 +68,39 @@ int main(int argc, char **argv)
   //    RS.PrintRealizableSpadjor();
   //    RS.PrintSegmented();
 
-  Point<2> a1{0,2},a2{4,0},a3{8,2},a4{4,6};
-  Point<2> b1{4,2},b2{8,0},b3{12,2},b4{8,6};
+  Point<2> a1{0,2},a2{4,-2},a3{8,2},a4{4,6};
+  Point<2> b1{4,2},b2{8,-2},b3{12,2},b4{8,6};
 
 
   Polygon<2> red1{a1,a2,a3,a4};
   Polygon<2> blue1{b1,b2,b3,b4};
+  Polygon<2> copy(red1);
 
   red1.PrintPolygon();
   blue1.PrintPolygon();
-
+  copy.PrintPolygon();
   
-     
+  RealizableSpadjor<2> RS{red1};
+  RS.Print();
+  
+  vector<Point<2>> v1{a1,a2,a3};
+  vector<Point<2>> v2{b1,b2,b3,b4};
+  SegmentedRealizableSpadjor<2> SRS{v1,v2};
+  SRS.PrintSegmented();
+
+  Point<2> is1{6,0},is2{6,3};
+    vector<Point<2>> path1{b1,is1};
+    vector<Point<2>> path2{is2,b1};
+    vector<Point<2>> path3{is1,a3,is2};
+    SegmentedRealizableSpadjor<2> first{path1,path2,path3};
+    first.PrintSegmented();
+     RealizableSpadjor<2> test = first.Pasting();
+     test.Print();
+    cout << a1.IsEqual(a2,10) << endl;
+
+    Point<2> f1=a2-a1;
+    Point<2>  f2=b4-b3;
+    f1.PrintPoint();
+    cout <<(f1.dot(f2))/(f1.norm(2)*f2.norm(2))<<endl;
   return 0;
 }

@@ -23,13 +23,12 @@ RealizableSpadjor<2>  SegmentedRealizableSpadjor<2>::Pasting(Real tol)
   	  it--;	  
   	}
   	}
-    rs.Print();
-
+    // rs.Print();
     
   // Pasting
     while( !(this->SRS).empty() )
     {
-      cout<< this->SRS.size()<<endl;
+      //cout<< this->SRS.size()<<endl;
       it = this->SRS.begin();
       temp.push_back(*it);
 
@@ -44,22 +43,22 @@ RealizableSpadjor<2>  SegmentedRealizableSpadjor<2>::Pasting(Real tol)
 	      count ++;
 	      if(count ==1)
 		{v1=*((temp.end()-1)->end()-2)-*((temp.end()-1)->end()-1);
-	       v1.PrintPoint();
+		  //  v1.PrintPoint();
       	       v2=*(it2->begin()+1)-*(it2->begin());
-	       v2.PrintPoint();
+	       //  v2.PrintPoint();
       	      cosang =(v1.dot(v2))/(v1.norm(2)*v2.norm(2));
       	      sign = (v1.cross(v2) > tol);
 	      itcord=it2;
 		}
 	      if(count>=2){
       	       v1=*((temp.end()-1)->end()-2)-*((temp.end()-1)->end()-1);
-	       v1.PrintPoint();
+	       // v1.PrintPoint();
       	       v2=*(it2->begin()+1)-*(it2->begin());
-	       v2.PrintPoint();
+	       // v2.PrintPoint();
       	      cosang1 =(v1.dot(v2))/(v1.norm(2)*v2.norm(2));
       	      sign1 = (v1.cross(v2) > tol);
 	      
-	      cout << cosang1 <<" "<< sign1<<endl;//
+	      // cout << cosang1 <<" "<< sign1<<endl;//
 	      
       	      if(sign1<sign)
       		{
@@ -79,53 +78,53 @@ RealizableSpadjor<2>  SegmentedRealizableSpadjor<2>::Pasting(Real tol)
       		}
 	      } // end count
       	    }
-	  cout << "for end" <<endl;  
+	  // cout << "for end" <<endl;  
       	}
-      cout<<"next"<<endl;
+      //  cout<<"next"<<endl;
 
       
        temp.push_back(*itcord);
-      cout<<"temp"<<temp.size()<<endl;
+       // cout<<"temp"<<temp.size()<<endl;
       
       for(it3 = temp.begin(); it3!=temp.end(); ++it3)
 	{
 	   if(it3 != (temp.end()-1)){
 	    
-	    (*((temp.end()-1)-> end()-1 )).PrintPoint();//Test
-	    (*(it3->begin())).PrintPoint();//Test
+	     //   (*((temp.end()-1)-> end()-1 )).PrintPoint();//Test
+	    //  (*(it3->begin())).PrintPoint();//Test
 	    // form a loop
 	  if ( (*(it3->begin())).IsEqual( (*((temp.end()-1)-> end()-1 )) ) )
 	    {	   
   	    while( ! temp.empty())
   	      {
-		cout<< "int while" <<endl;//Test
+		//	cout<< "int while" <<endl;//Test
   	      poly.polygon.insert(poly.polygon.end(),it3->begin(),it3->end()-1);
-	      cout<<"polysize:"<<poly.polygon.size()<<endl;
+	      //  cout<<"polysize:"<<poly.polygon.size()<<endl;
   	    temp.erase(it3);
-  	    cout<<"temp:   "<<temp.size()<<endl;//Test
+	    //  cout<<"temp:   "<<temp.size()<<endl;//Test
   	      }
 	    poly.polygon.push_back(*(poly.polygon.begin()));
 	    rs.jordan.push_back(poly);
 	    
-	    rs.Print();//Test
+	    //  rs.Print();//Test
 	    poly.polygon.clear();
-	    cout<<poly.polygon.size()<<endl;
+	    // cout<<poly.polygon.size()<<endl;
 	    it3=temp.end()-1;
   	  }//end if
 	  
 	  }//if
 	  
 	}//end for
-      cout<<"for"<<endl;
+      //  cout<<"for"<<endl;//test
         this-> SRS.erase(itcord);
-      cout<< this->SRS.size()<<endl;
+	//	cout<< this->SRS.size()<<endl;//test
 	}//while temp
       
       this-> SRS.erase(it);
-      cout<< this->SRS.size()<<endl;
+      //  cout<< this->SRS.size()<<endl;//test
     }//while srs
     
- rs.Print();
+    //rs.Print();
     return rs;
   
 }

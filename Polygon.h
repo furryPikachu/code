@@ -47,6 +47,12 @@ class Polygon
   /* Found the relative location of a point with the polygon. */
   int PointPolygon(const Point<2> &q, Real tol=0.05) const;
 
+  /* box of polygon:x_min,x_max,y_min,y_max */
+  vector<Real> box(void) const;
+
+  /* Compute the relative locations of two almost disjoint polygons. */
+  bool PolygonCovering(const Polygon<dim> &that, Real tol=0.05) const;
+
   /* Show the position. */
   void ShowPointLocation(const Point<2> &q, Real tol = 0.05) const
   {

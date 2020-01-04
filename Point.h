@@ -73,7 +73,13 @@ class Point
     return r;
   }
 
-
+  /* element-wise addition  */
+  Point<dim> operator+(const Point<dim> &that) const {
+    Point<dim> r;
+    for(int i =0; i<dim; i++)
+      r.coord[i] = this->coord[i] + that.coord[i];
+    return r;
+  }
   
   /* element-wise substraction to product a vector */
   Point<dim> operator-(const Point<dim> &that) const {

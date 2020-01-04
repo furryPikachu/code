@@ -102,5 +102,25 @@ int main(int argc, char **argv)
     Point<2>  f2=b4-b3;
     f1.PrintPoint();
     cout <<(f1.dot(f2))/(f1.norm(2)*f2.norm(2))<<endl;
+
+    // PolygonCovering Test
+    Point<2> out1{0,0},out2{2,0},out3{2,-2},out4{0,-2};
+    Polygon<2> out{out1, out2,out3,out4};
+    Point<2> in1{5,2},in2{6,3},in3{7,2},in4{6,1};
+    Polygon<2> in{in1,in2,in3,in4};
+    Polygon<2> loc = test.jordan[0];
+
+    loc.box();
+    cout<< loc.box()[0]<< loc.box()[1]<< loc.box()[2]<< loc.box()[3] <<endl;
+    cout<< in.box()[0]<< in.box()[1]<< in.box()[2]<< in.box()[3] <<endl;
+    cout<< "out " << loc.PolygonCovering(out) <<endl;
+    cout << "in " << (loc.PolygonCovering(in) )<<endl; 
+ cout << "in " << (red1.PolygonCovering(in) )<<endl;
+ cout << "in " << (blue1.PolygonCovering(in) )<<endl; 
+
+ blue1.PolygonCovering(in);
+    cout<< (1&&0);
+    cout << (0&&1);
+    cout<<test.BuildHasse().size()<< endl;
   return 0;
 }

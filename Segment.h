@@ -37,7 +37,7 @@ class Segment
     cout << endl;
   }
 
-  bool PointInSegment(const Point<dim> &p, Real tol=0.05);
+  bool PointInSegment(const Point<dim> &p, Real tol=0.05) const;
 
  public:
   /* slope() for 2-D  segment */
@@ -53,6 +53,10 @@ class Segment
   /* When separation, caculate the intersection. */
   Point<2> Intersection(const Segment<dim> &that, Real tol=0.05, Real M=1.0);
 
+  vector<Point<2>> overlapPoints(const Segment<dim> &that, Real tol= 0.05,Real M =1.0);
+
+ 
+    
  protected:
   /* Default constructor. */
   Segment(){};

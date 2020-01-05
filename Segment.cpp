@@ -7,7 +7,7 @@ Real Segment<2>::slope() const
 
 
 template <> inline 
-bool Segment<2>::PointInSegment(const Point<2> &p, Real tol)
+bool Segment<2>::PointInSegment(const Point<2> &p, Real tol) const
 {
   Real mindist=0;
   bool signp1 = ((endpoint[0]-p).dot(endpoint[0]-endpoint[1]) > tol);
@@ -56,6 +56,34 @@ Point<2> Segment<2>::Intersection(const Segment<2> &that, Real tol, Real M)
   else
     assert(!"Segments Parallel!");
 }
+
+
+template <>
+vector<Point<2>> Segment<2>::overlapPoints(const Segment<2> &that, Real tol, Real M )
+{
+  vector<Point<2>> r;
+  Point<2> p1=this->endpoint[0];
+  Point<2> p2=this->endpoint[1];
+   Point<2> p3=that.endpoint[0];
+    Point<2> p4=that.endpoint[1];
+       
+    if(this->PointInSegment(p3,tol))
+      r.push_back(p3);
+    if(this->PointInSegment(p4,tol))
+      r.push_back(p4);
+    if(that.PointInSegment(p1,tol))
+      r.push_back(p1);
+    if(that.PointInSegment(p2,tol))
+      r.push_back(p1);
+
+    if(r[0].IsEqual(r[1],tol))
+      r.erase(r.begin());
+    vector<Point<2>> result{r[0],r[1]};
+    return result;
+    
+}
+
+
 
 
 template <>
